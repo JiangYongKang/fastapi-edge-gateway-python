@@ -1,0 +1,22 @@
+{
+  "upstreams": [
+    { "id": "orders", "base_url": "http://127.0.0.1:9001" },
+    { "id": "users", "base_url": "http://127.0.0.1:9002" }
+  ],
+  "routes": [
+    {
+      "id": "orders-api",
+      "prefix": "/api/orders",
+      "upstream_ids": ["orders"],
+      "timeout": 2.0,
+      "max_retries": 2,
+      "rate_limit_capacity": 50,
+      "rate_limit_refill_per_sec": 20
+    },
+    {
+      "id": "users-api",
+      "prefix": "/api/users",
+      "upstream_ids": ["users"]
+    }
+  ]
+}
